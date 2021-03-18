@@ -103,11 +103,7 @@ export default {
       return btnClasses;
     },
   },
-  methods: {
-    handleClick(evt) {
-      this.$emit("click", evt);
-    },
-  },
+  methods: {},
 };
 </script>
 <style></style>

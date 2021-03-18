@@ -33,6 +33,12 @@
     </template>
 
     <ul class="navbar-nav ml-lg-auto">
+      <!--       <li
+        style="display: inline-block; margin: 0; padding: 0"
+        v-if="Vue.prototype.$session.exists()"
+      >
+        {{ Vue.prototype.$session.get("user").username }}
+      </li> -->
       <li class="nav-item dropdown">
         <a
           class="nav-link nav-link-icon"
@@ -63,9 +69,19 @@
 export default {
   name: "NavBar",
 
-  data: () => ({}),
+  data() {
+    return {
+      Vue: this,
+    };
+  },
 
-  created() {},
+  created() {
+    console.log("si");
+    /*  if (Vue.prototype.$session.exists()) {
+      this.$router.push("/");
+    } */
+    debugger;
+  },
   methods: {
     logout() {
       /* console.log(this.$session.getAll());

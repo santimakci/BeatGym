@@ -30,7 +30,7 @@ class UserLoginSerializer(serializers.Serializer):
 
     # Primero validamos los datos
     def validate(self, data):
-
+        #import code; code.interact(local=dict(globals(), **locals()))
         # authenticate recibe las credenciales, si son válidas devuelve el objeto del usuario
         user = authenticate(username=data['email'], password=data['password'])
         if not user:

@@ -19,6 +19,7 @@ import Tabs from "../components/Tabs/Tabs";
 
 import { ElTooltip, ElPopover } from "element-plus";
 
+
 const GlobalComponents = {
   install(app) {
     app.component("badge", Badge);
