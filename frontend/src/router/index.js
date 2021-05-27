@@ -1,84 +1,41 @@
-import { createRouter, createWebHistory } from "vue-router";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Dashboard from '../components/Dashboard'
+import Login from '../components/Login'
+import NotFound from '../components/Errors/NotFound'
+import Profile from '../components/Profile'
 
-import DashboardLayout from "@/layout/DashboardLayout";
-import AuthLayout from "@/layout/AuthLayout";
 
-import Dashboard from "../views/Dashboard.vue";
-import Icons from "../views/Icons.vue";
-import Maps from "../views/Maps.vue";
-import Profile from "../views/UserProfile.vue";
-import Tables from "../views/Tables.vue";
-import Home from "../views/Home/Index.vue"
-
-import Login from "../views/Login.vue";
+Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: "/",
-    component: Home,
-    children: [
-      {
-        path: "/",
-        name: "home",
-        components: { default: Home },
-      },
-    ]
-  },
-  {
-    path: "/dashboard",
-    redirect: "dashboard",
-    component: DashboardLayout,
-    children: [
-      {
-        path: "/dashboard",
-        name: "dashboard",
-        components: { default: Dashboard },
-      },
-      {
-        path: "/icons",
-        name: "icons",
-        components: { default: Icons },
-      },
-      {
-        path: "/maps",
-        name: "maps",
-        components: { default: Maps },
-      },
-      {
-        path: "/profile",
-        name: "profile",
-        components: { default: Profile },
-      },
-      {
-        path: "/tables",
-        name: "tables",
-        components: { default: Tables },
-      },
-    ],
-  },
-  {
-    path: "/",
-    redirect: "login",
-    component: AuthLayout,
-    children: [
-      {
-        path: "/login",
-        name: "login",
-        components: { default: Login },
-      },
-      {
-        path: "/register",
-        name: "register",
-        components: { default: Login },
-      },
-    ],
-  },
-];
 
-const router = createRouter({
-  history: createWebHistory(),
-  linkActiveClass: "active",
-  routes,
-});
+      {
+        path: '/',
+        name: 'Login',
+        component: Login
+      },
+      {
+          path: '/dashboard',
+          name: 'Dashboard',
+          component: Dashboard
+      },
+      {
+          path: '/profile/:id',
+          name: 'Profile',
+          component: Profile
+      },
+      {
+          path: '*',
+          name: 'Not Found',
+          component: NotFound,
+      }
+]
 
-export default router;
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
+})
+
+export default router

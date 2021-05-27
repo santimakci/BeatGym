@@ -1,0 +1,10 @@
+.v-application--wrap {
+        background-color:#eee;
+    }
+.v-main__wrap{
+        background:#eee !important;
+}
+
+.v-list-item--active{
+        background: #5aaf5194;
+}

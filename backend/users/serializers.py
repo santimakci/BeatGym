@@ -20,7 +20,22 @@ class UserModelSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'email',
+            'is_teacher',
+            'id'
         )
+
+class UserProfileSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=255)
+    first_name = serializers.CharField(max_length=255)
+    last_name = serializers.CharField(max_length=255)
+    email = serializers.EmailField()
+    observations = serializers.CharField(max_length=500)
+    date_of_birth = serializers.DateField()
+    date_of_started =serializers.DateField()
+    pay_last_month = serializers.BooleanField()
+    is_teacher = serializers.BooleanField()
+
+
 
 class UserLoginSerializer(serializers.Serializer):
 

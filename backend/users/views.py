@@ -1,15 +1,16 @@
 # Django REST Framework
-from rest_framework import status, viewsets
+from django.db.models import manager
+from rest_framework import status, viewsets, mixins
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
 # Serializers
-from users.serializers import UserLoginSerializer, UserModelSerializer, UserSignUpSerializer
+from users.serializers import UserLoginSerializer, UserModelSerializer, UserProfileSerializer, UserSignUpSerializer
 
 # Models
 from users.models import User
 
-class UserViewSet(viewsets.GenericViewSet):
+class UserViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
 
     queryset = User.objects.filter(is_active=True)
     serializer_class = UserModelSerializer
@@ -36,3 +37,11 @@ class UserViewSet(viewsets.GenericViewSet):
         user = serializer.save()
         data = UserModelSerializer(user).data
         return Response(data, status=status.HTTP_201_CREATED)
+
+    def retrieve(self, request, pk=None):
+        queryset = User.objects.filter(id=int(pk))
+        if not queryset:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        else:
+            serializer = UserProfileSerializer(queryset, many=True)
+            return Response(serializer.data,status=status.HTTP_200_OK)   

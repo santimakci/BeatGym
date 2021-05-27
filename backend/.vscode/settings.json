@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "/home/santiago/.pyenv/versions/3.6.8/bin/python",
+    "python.analysis.extraPaths": [
+        "app",
+        "another/path/etc"
+    ]
+}
